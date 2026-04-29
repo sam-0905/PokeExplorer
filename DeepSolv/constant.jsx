@@ -1,5 +1,5 @@
 
 
-const pokemanApi = "https://pokeapi.co/api/v2/pokemon/ditto";
+const pokemanApi = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0";
 
 export { pokemanApi };
