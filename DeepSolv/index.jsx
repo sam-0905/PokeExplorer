@@ -4,10 +4,12 @@ import { BrowserRouter as Router } from "react-router";
 import App from "./App";
 import "./index.css";
 
+const container = document.getElementById("root");
 
-ReactDOM.render(    
+const root = ReactDOM.createRoot(container);
+
+root.render(    
 <Router>
     <App />
-</Router>, 
-document.getElementById("root")
+</Router>
 );
