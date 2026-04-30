@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./PokemonCard.css";
 
 const PokemonCard = ({data}) =>{
 
@@ -20,8 +21,8 @@ const PokemonCard = ({data}) =>{
 
     return(
         <>
-        <div>
-            <h3>{data.name}</h3>
+        <div className="card">
+            <h3 className="card-name">{data.name}</h3>
             {image && <img src={image} alt={data.name} />}
         </div>
         </>
