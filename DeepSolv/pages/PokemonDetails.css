@@ -1,1 +1,33 @@
 
+.pokemonDetails{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 20px;
+    border: 1px solid black;
+    max-width: 400px;
+    margin: auto;
+    background-color: lemonchiffon;
+    border-radius: 10px;
+}
+
+.pokemonDetails h2{
+    text-transform: capitalize;
+    color:darkblue;
+    margin-bottom: 10px;
+}
+
+.pokemonDetails img{
+    width: 150px;
+    height: 150px;
+}
+
+.pokemonDetails h2, .pokemonDetails p{
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.pokemonDetails h1{
+    color: firebrick;
+    margin-bottom: 20px;
+}
