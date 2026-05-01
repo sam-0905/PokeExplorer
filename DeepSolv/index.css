@@ -13,6 +13,7 @@ body{
     color:#cc0000;
     margin: 20px 0;
     font-weight: 800;
+    font-family: cursive;
 }
 .card-container{
     display: flex;
