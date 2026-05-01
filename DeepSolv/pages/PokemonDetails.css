@@ -7,6 +7,7 @@
     border: 1px solid black;
     max-width: 400px;
     margin: auto;
+    margin-top: 1rem;
     background-color: lemonchiffon;
     border-radius: 10px;
 }
