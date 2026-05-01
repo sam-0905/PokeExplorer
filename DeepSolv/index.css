@@ -1,0 +1,26 @@
+
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.search-input{
+    padding: 15px;
+    width: 300px;
+    margin: 20px auto;
+    display: block;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: firebrick;
+    font-size: 24px;
+    margin-top: 50px;
+}
