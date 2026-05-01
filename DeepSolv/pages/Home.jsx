@@ -42,7 +42,7 @@ const filteredPokemon = pokemon.filter((p) => p.name.toLowerCase().includes(sear
          <div>
             <input type="text" placeholder="search your fav pokemon" value={searchText} onChange={handleSearch} className="search-input"/>
          </div>
-        <h1>Pokemon List</h1>
+        <h1 className="Heading">Pokemon List</h1>
 
         {!loading && (
             filteredPokemon.length > 0 ? (
