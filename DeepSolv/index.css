@@ -24,3 +24,39 @@
     font-size: 24px;
     margin-top: 50px;
 }
+
+.pagination{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1rem;
+}
+.pagination button{
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: firebrick;
+    color: white;
+}
+
+.pagination button:disabled{
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.pagination span{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.not-found{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:cornflowerblue;
+    font-size: 24px;
+    background-color: lemonchiffon;
+    padding: 30px;
+    width: auto;
+}
