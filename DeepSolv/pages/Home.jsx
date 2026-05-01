@@ -9,12 +9,17 @@ const [pokemon, setPokemon] = useState([]);
 const [loading, setLoading] = useState(true);
 const [searchText, setSearchText] = useState("");
 
-const filteredPokemon = pokemon.filter((p) => p.name.toLowerCase().includes(searchText.toLowerCase()));
+const [page, setPage] = useState(0);
+const limit = 20;
+
+const filteredPokemon = pokemon.filter((p) => p.name.toLowerCase().includes(searchText.trim().toLowerCase()));
 
     useEffect(() => {
         const fetchData =  async () => {
             try{
-                const res = await fetch(pokemonApi);
+                setLoading(true);
+                const offset = page * limit;
+                const res = await fetch(`${pokemonApi}?limit=${limit}&offset=${offset}`);
                 const data = await res.json();
                 setPokemon(data.results);
             }
@@ -26,7 +31,7 @@ const filteredPokemon = pokemon.filter((p) => p.name.toLowerCase().includes(sear
             }
         }
         fetchData();
-    }, [])
+    }, [page])
 
     function handleSearch(e){
         setSearchText(e.target.value);
@@ -38,15 +43,20 @@ const filteredPokemon = pokemon.filter((p) => p.name.toLowerCase().includes(sear
         <h1>Pokemon List</h1>
 
         {!loading && (
-            filteredPokemon.length > 0 ?
-            (filteredPokemon .map((p) => (
+            filteredPokemon.length > 0 ? (
+                <div className="card-container">
+                {filteredPokemon.map((p) => (
                 <PokemonCard data={p} key={p.name}/>
-        ))) :
+        ))}</div>):
         <h2>No Pokemon found</h2>
-        )
-      
-    }    
+        )}
 
+         <div>
+            <button disabled={page === 0} onClick={() => setPage((prev) => prev - 1 )}>Prev</button>
+            <span>Page :{page + 1}</span>
+            <button onClick={() => setPage((prev) => prev + 1 )}>Next</button>
+         </div>
+    
         </>
     )}
 
