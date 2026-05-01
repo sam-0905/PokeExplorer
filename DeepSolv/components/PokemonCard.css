@@ -2,18 +2,26 @@
 .card {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     align-items: center;
-    width: 200px;
-    height: 200px;
-    padding: 10px;
+    width: 220px;
+    padding: 15px;
     margin: 10px;
     border: 1px solid black;
-    background-color: chartreuse;
+    background-color: darkgreen;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .card-name{
     font-size: 20px;
     font-weight: bold;
-    line-height: 5px;   
+    color: ghostwhite; 
+    font-family:monospace;
+}
+
+.card-img{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-top: 10px;
 }

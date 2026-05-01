@@ -23,7 +23,7 @@ const PokemonCard = ({data}) =>{
         <>
         <div className="card">
             <h3 className="card-name">{data.name}</h3>
-            {image && <img src={image} alt={data.name} />}
+            {image && <img src={image} alt={data.name} className="card-img" />}
         </div>
         </>
     )
