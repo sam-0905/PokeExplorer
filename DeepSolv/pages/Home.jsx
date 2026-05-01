@@ -8,11 +8,17 @@ const Home = () => {
 const [pokemon, setPokemon] = useState([]);
 const [loading, setLoading] = useState(true);
 const [searchText, setSearchText] = useState("");
+const [selectedType, setSelectedType] = useState("");
 
 const [page, setPage] = useState(0);
 const limit = 20;
 
-const filteredPokemon = pokemon.filter((p) => p.name.toLowerCase().includes(searchText.trim().toLowerCase()));
+const filteredPokemon = pokemon.filter((p) => {
+    const matchSearch = p.name.toLowerCase().includes(searchText.toLowerCase());    
+    const matchType = selectedType  === "" || p.types.includes(selectedType) ;
+
+    return matchSearch && matchType;
+});
 
     useEffect(() => {
         const fetchData =  async () => {
@@ -21,7 +27,19 @@ const filteredPokemon = pokemon.filter((p) => p.name.toLowerCase().includes(sear
                 const offset = page * limit;
                 const res = await fetch(`${pokemonApi}?limit=${limit}&offset=${offset}`);
                 const data = await res.json();
-                setPokemon(data.results);
+
+            const pokemonDetails = await Promise.all(
+                data.results.map(async (p) => {
+                    const res = await fetch(p.url);
+                    const details = await res.json();
+                    return {
+                        name: details.name,
+                        image: details.sprites.front_default,
+                        types: details.types.map((t) => t.type.name)
+                    }
+                })
+            )
+            setPokemon(pokemonDetails);
             }
             catch(err){
                 console.log(err);   
@@ -42,6 +60,16 @@ const filteredPokemon = pokemon.filter((p) => p.name.toLowerCase().includes(sear
          <div>
             <input type="text" placeholder="search your fav pokemon" value={searchText} onChange={handleSearch} className="search-input"/>
          </div>
+
+           <select name="" id="" onChange={(e) => setSelectedType(e.target.value)}>
+                <option value="">All Types</option>
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="grass">Grass</option>
+                <option value="poison">poison</option>
+            </select> 
+
+
         <h1 className="Heading">Pokemon List</h1>
 
         {!loading && (
