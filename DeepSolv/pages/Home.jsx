@@ -8,6 +8,7 @@ const Home = () => {
 
 const [pokemon, setPokemon] = useState([]);
 const [loading, setLoading] = useState(true);
+const [input, setInput] = useState("");
 const [searchText, setSearchText] = useState("");
 const [selectedType, setSelectedType] = useState("");
 const{favorites, toggleFavorite} = useFavorite();
@@ -54,15 +55,19 @@ const filteredPokemon = pokemon.filter((p) => {
     }, [page])
 
 
+    function handleInput(e){
+        setInput(e.target.value);
+    }
     // Search handler
     function handleSearch(e){
-        setSearchText(e.target.value);
+        setSearchText(input);
     }
         return (
         <>
         {loading && <h1 className="loading">Loading........</h1>}
-         <div>
-            <input type="text" placeholder="Search Your Podex......" value={searchText} onChange={handleSearch} className="search-input"/>
+         <div className="search-container" >
+            <input className="search-input" type="text" placeholder="Search Your Podex......" value={input} onChange={handleInput}/>
+            <button onClick ={handleSearch}>Search</button>
          </div>
             <label className="filter-label">Filter by Type:</label>
            <select className="type-filter" onChange={(e) => setSelectedType(e.target.value)}>
