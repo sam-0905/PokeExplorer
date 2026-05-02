@@ -9,7 +9,7 @@ const [pokemon, setPokemon] = useState([]);
 const [loading, setLoading] = useState(true);
 const [searchText, setSearchText] = useState("");
 const [selectedType, setSelectedType] = useState("");
-const [favorite ,setFavorite] = useState([]);
+const [favorites ,setFavorites] = useState([]);
 
 const [page, setPage] = useState(0);
 const limit = 20;
@@ -56,15 +56,27 @@ const filteredPokemon = pokemon.filter((p) => {
     useEffect(() =>{
         const storedFavorites = localStorage.getItem("favorites");
         if(storedFavorites){
-            setFavorite(JSON.parse(storedFavorites));
+            setFavorites(JSON.parse(storedFavorites));
         }
     },[])
 
     // save to localStorage
      useEffect(() => {
-        localStorage.setItem("favorites", JSON.stringify(favorite));
-     })
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+     },[favorites])
 
+    // Toogle favorite
+    function toggleFavorite(pokemon){
+        const isFavorite = favorites.some((fav) => fav.name === pokemon.name);
+        if(isFavorite){
+            setFavorites(favorites.filter((fav) => fav.name !== pokemon.name));
+        }else{
+            setFavorites([...favorites, pokemon]);
+        }
+    }
+
+
+    // Search handler
     function handleSearch(e){
         setSearchText(e.target.value);
     }
@@ -90,7 +102,7 @@ const filteredPokemon = pokemon.filter((p) => {
             filteredPokemon.length > 0 ? (
                 <div className="card-container">
                 {filteredPokemon.map((p) => (
-                <PokemonCard data={p} key={p.name}/>
+                <PokemonCard data={p} key={p.name} favorites={favorites} toggleFavorite={toggleFavorite}/>
         ))}</div>):
         <h2 className="not-found">No Pokemon found</h2>
         )}
