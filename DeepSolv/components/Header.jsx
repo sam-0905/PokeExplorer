@@ -6,9 +6,8 @@ const Header = () => {
 
   return (
     <div className='Header'>
-    <h1>Pokémon Explorer</h1>
+      <Link to="/"><h1>Pokémon Explorer</h1></Link>
     <div className="nav-links">
-      <Link to="/">Home</Link>
     <Link to="/favorites">Favorites</Link>
     </div>
     </div>
