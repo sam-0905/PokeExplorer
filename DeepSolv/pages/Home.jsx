@@ -1,6 +1,7 @@
 import PokemonCard from "../components/PokemonCard";
 import {pokemonApi} from "../constant";
 import { useEffect, useState } from "react";
+import useFavorite from "../Hooks/useFavorite";
 
 
 const Home = () => {
@@ -9,7 +10,7 @@ const [pokemon, setPokemon] = useState([]);
 const [loading, setLoading] = useState(true);
 const [searchText, setSearchText] = useState("");
 const [selectedType, setSelectedType] = useState("");
-const [favorites ,setFavorites] = useState([]);
+const{favorites, toggleFavorite} = useFavorite();
 
 const [page, setPage] = useState(0);
 const limit = 20;
@@ -51,29 +52,6 @@ const filteredPokemon = pokemon.filter((p) => {
         }
         fetchData();
     }, [page])
-    
-    // Load favorites from localStorage
-    useEffect(() =>{
-        const storedFavorites = localStorage.getItem("favorites");
-        if(storedFavorites){
-            setFavorites(JSON.parse(storedFavorites));
-        }
-    },[])
-
-    // save to localStorage
-     useEffect(() => {
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-     },[favorites])
-
-    // Toogle favorite
-    function toggleFavorite(pokemon){
-        const isFavorite = favorites.some((fav) => fav.name === pokemon.name);
-        if(isFavorite){
-            setFavorites(favorites.filter((fav) => fav.name !== pokemon.name));
-        }else{
-            setFavorites([...favorites, pokemon]);
-        }
-    }
 
 
     // Search handler
