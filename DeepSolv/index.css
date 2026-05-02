@@ -103,3 +103,54 @@ body{
     width: auto;
 }
 
+
+.favorites-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+    align-items: center;
+    margin: auto;
+}
+
+@media (min-width:768px ) {
+    .favorites-container{
+        grid-template-columns: repeat(2, 1fr);
+        margin-left: auto;
+        padding: 2rem;
+        margin: auto;
+        font-size: 18px;
+        gap: 30px;
+    }
+}
+
+@media (min-width:1024px) {
+    .favorites-container{
+        grid-template-columns: repeat(4, 1fr);
+        padding: 1rem;
+        margin: auto;
+        font-size: xx-large;
+    }
+}
+.fav-heading{
+    text-align: center;
+    color: #cc0000;
+    margin-bottom: 20px;
+    font-weight: 800;
+    font-family: cursive;
+    margin-top: 1rem;
+}
+
+.No-favorite{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:aqua;
+    font-size: 30px;
+    font-weight: 800;
+    font-family: monospace;
+    margin-top: 50px;
+    padding: 5rem;
+    /* width: 300px; */
+    background-color: orangered;
+}
