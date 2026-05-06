@@ -6,7 +6,7 @@ const Header = () => {
 
   return (
     <div className='Header'>
-      <Link to="/"><h1>Pokémon Explorer</h1></Link>
+      <Link to="/"><h1>Poké Explorer</h1></Link>
     <div className="nav-links">
     <Link to="/favorites">Favorites</Link>
     </div>
